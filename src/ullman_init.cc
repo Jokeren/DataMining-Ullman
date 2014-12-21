@@ -130,13 +130,16 @@ namespace ullman {
 
 	UllmanReturnCode Isomorphism::output()
 	{
+		size_t sum = 0;
 		for (size_t i = 0; i < _m_output.size(); ++i) {
 			printf("t # %zu : %zu\n", i, _m_output[i].size());
+			sum += _m_output[i].size();
 			for (size_t j = 0; j < _m_output[i].size(); ++j) {
 				printf("%zu ", _m_output[i][j]);
 			}
 			printf("\n\n");
 		}
+		printf("\nsum: %zu\n", sum);
 
 		return ULLMAN_SUCCESS;
 	}

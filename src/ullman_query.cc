@@ -1,4 +1,5 @@
 #include "ullman.h"
+#define DEBUG
 
 namespace ullman {
 	UllmanReturnCode Isomorphism::query()
@@ -14,16 +15,18 @@ namespace ullman {
 				Graph& entry_graph = _m_database.get_graph(j);
 				_m_cur_graph_id = entry_graph.get_id();
 #ifdef DEBUG
-//		printf("query_id %zu, graph_id %zu\n", _m_cur_query_id, _m_cur_graph_id);
+		printf("query_id %zu, graph_id %zu\n", _m_cur_query_id, _m_cur_graph_id);
+		//printf("query_graph.size() %zu, entry_graph.size() %zu\n", query_graph.size(), entry_graph.size());
 #endif 
-
 				_m_columns.resize(query_graph.size(), entry_graph.size());
 				_m_columns_used.resize(entry_graph.size(), -1);
 
 				build_matrix(matrix_b, entry_graph);
 
-				if (!construct_match(query_graph, entry_graph))
+				if (!construct_match(query_graph, entry_graph)) {
+					_m_columns.clear();
 					continue;
+				}
 
 #ifdef DEBUG
 //		printf("%s\n", _m_columns.c_str());

@@ -30,7 +30,7 @@ namespace ullman {
 
 				inline void fill(size_t row, T v);
 
-				inline void resize(size_t size_i, size_t size_j);
+				void resize(size_t size_i, size_t size_j);
 
 				inline void clear();
 
@@ -123,7 +123,7 @@ namespace ullman {
 		}
 
 	template <typename T>
-		inline void Matrix<T>::resize(size_t size_i, size_t size_j)
+		void Matrix<T>::resize(size_t size_i, size_t size_j)
 		{
 			if (_m_value.size() < size_i) {
 				_m_value.resize(size_i, std::vector<T>(_m_ncolumns, 0));
@@ -132,8 +132,9 @@ namespace ullman {
 			_m_nrows = size_i;
 
 			if (_m_value[0].size() < size_j) {
-				for (size_t i = 0; i < _m_nrows; ++i)
+				for (size_t i = 0; i < _m_nrows; ++i) {
 					_m_value[i].resize(size_j, 0);
+				}
 			}
 
 			_m_ncolumns = size_j;
@@ -147,6 +148,8 @@ namespace ullman {
 			for (size_t i = 0; i < _m_nrows; ++i) {
 				_m_value[i].clear();
 			}
+			_m_ncolumns = 0;
+			_m_nrows = 0;
 			_m_change = true;
 		}
 
