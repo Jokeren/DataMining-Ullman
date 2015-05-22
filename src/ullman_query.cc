@@ -1,5 +1,4 @@
 #include "ullman.h"
-#define DEBUG
 
 namespace ullman {
 	UllmanReturnCode Isomorphism::query()
@@ -105,7 +104,7 @@ namespace ullman {
 			for (size_t j = 0; j < _m_columns.size().second; ++j) {
 				if (_m_columns.get(i, j) == 1) {
 					size_t degree_from = query_graph.get_vertex(i).edges.size();
-					size_t degree_to = entry_graph.get_vertex(i).edges.size();
+					size_t degree_to = entry_graph.get_vertex(j).edges.size();
 					if (degree_to < degree_from)
 						_m_columns.set(i, j, 0);
 				}

@@ -3,10 +3,10 @@ objects=seperator.o ullman_init.o ullman_utils.o main.o ullman_query.o\
 
 all : ullman
 
-CXXFLAGS= -g -pg -O2
+CXXFLAGS= -g -O2
 
 ullman : $(objects)
-	g++ -o ullman -g $(objects) -pg -O2
+	g++ -o ullman -g $(objects) -O2
 
 seperator.o : seperator.h
 graph.o : graph.h
